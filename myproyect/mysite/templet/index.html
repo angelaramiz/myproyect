@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Pproducts</title>
+</head>
+<body>
+    <h1>Affiliate Pproducts</h1>
+    <a href="{% url 'add_product' % }">Add a New Product</a>
+    <ul>
+        {% for product in products %}
+        <li>
+            <h2> {{ product.name }} </h2>
+            <p>Price: ${{product.price}} </p>
+            <img src="{{product.imge_url}}" alt="{{product.name}}">
+            <p>{{product.description}} </p>
+            <p><strong>Comments:</strong>{{product.comments}} </p>
+            <h3> Releated Products</h3>
+            <ul>
+                {% for related in product.related_products.all %}
+                <li>{{related.name}} </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
