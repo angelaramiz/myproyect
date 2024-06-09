@@ -11,11 +11,16 @@
       href="{% static 'mysite/css/styles.css' %}" />
   </head>
   <body>
-    <h1>Add a New Product</h1>
-    <form method="post">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Add Product</button>
-    </form>
-    <a href="{% url 'index' %}">Back to Home</a>
+    <div class="header">
+      <h1>Add a New Product</h1>
+  </div>
+  <div class="container">
+      <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="add-product-link">Add Product</button>
+      </form>
+      <a href="{% url 'index' %}" class="add-product-link">Back to Home</a>
+  </div>
   </body>
 </html>
