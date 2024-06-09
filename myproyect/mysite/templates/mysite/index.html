@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Affiliate Pproducts</title>
-</head>
-<body>
-    <h1>Affiliate Pproducts</h1>
-    <a href="{% url 'add_product' %}">Add a New Product</a>
-    <ul>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'mysite/css/styles.css' %}" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>Amazon Affiliate Products</h1>
+    </div>
+    <div class="container">
+      <a href="{% url 'add_product' %}" class="add-product-link"
+        >Add a New Product</a
+      >
+      <div class="product-list">
         {% for product in products %}
-        <li>
-            <h2> {{ product.name }} </h2>
-            <p>Price: ${{product.price}} </p>
-            <img src="{{product.imge_url}}" alt="{{product.name}}">
-            <p>{{product.description}} </p>
-            <p><strong>Comments:</strong>{{product.comments}} </p>
-            <h3> Releated Products</h3>
-            <ul>
-                {% for related in product.related_products.all %}
-                <li>{{related.name}} </li>
-                {% endfor %}
-            </ul>
-        </li>
+        <div class="product">
+          <h2>{{ product.name }}</h2>
+          <p class="price">${{ product.price }}</p>
+          <img src="{{ product.image_url }}" alt="{{ product.name }}" />
+          <p>{{ product.description }}</p>
+          <div class="comments">
+            <strong>Comments:</strong> {{ product.comments }}
+          </div>
+          <h3>Related Products</h3>
+          <ul>
+            {% for related in product.related_products.all %}
+            <li>{{ related.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
         {% endfor %}
-    </ul>
-</body>
+      </div>
+    </div>
+  </body>
 </html>
