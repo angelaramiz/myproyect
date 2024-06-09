@@ -11,7 +11,7 @@ def add_product(request):
             return redirect('index')
     else:
         form = ProductForm()
-        return render(request, 'mysite/add_product.html', {'form': form})
+        return render(request,'mysite/add_product.html', {'form': form})
     
 def index(request):
     products = Product.objects.all()
